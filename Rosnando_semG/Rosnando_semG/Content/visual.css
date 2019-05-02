@@ -1,0 +1,228 @@
+#titulo{
+    margin-top: 4%;
+    font-family: 'Exotc350 Bd BT';
+    
+}
+
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS';
+    background: #E6E7E8; 
+}
+
+
+
+.div_esqueleto{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+
+
+.div_geral {
+    width: 100%;
+    background-image: linear-gradient( #0f825b, #00ff7f);
+    
+}
+
+
+#div_topo {
+    
+    height: 80px;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    vertical-align: middle;
+    padding-top: 0;
+}
+
+#div_pesquisa{
+    float: left;        
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}   
+
+
+#div_logar{
+    float: right;
+    width: 30%;        
+    text-align: right;
+}
+
+#div_logo {
+    float: left;
+    width: 30%;
+    color: black;
+    font-family: marker felt, fantasy;
+}
+
+#logo{
+    float:left;
+    margin-right: 5%;        
+    margin-bottom: 0.5%; 
+
+}
+
+#div_menu{
+    background: #0f825b;
+    width: 100%;
+   
+    /*font-size: 12px;*/
+    color: white;
+    
+
+}
+
+.menus{
+    width: 30px;
+    height: 30px;
+}
+
+#div_banner{
+    margin-top:0.5%;
+}
+
+#div_banner .div_esqueleto{
+    background: white;
+    border-radius: 10px;    
+    padding: 0.4%;
+}
+
+
+#div_corpo .div_esqueleto {
+    margin-top: 0.5%;
+}
+
+
+#div_corpo .div_esqueleto .noticias{        
+    width: 73%;
+    float: left;
+}
+
+#div_corpo .div_esqueleto #destaques{
+
+    width: 27%;        
+    float: left;
+}
+
+#banner_dicas{
+    float: left;
+    width: 46%;
+    margin-right: 3%; 
+    
+    }
+
+.banner_dicas{
+    float: left;
+    width: 46%;
+    margin-right: 3%; 
+}
+
+#banner_sos{
+    float: left;
+    width: 47%; 
+}
+
+#banner_dicas_col_1{
+    float: left;
+    width: 46%;
+    margin-right: 3%;      
+
+}
+
+#banner_dicas_col_2{
+    float: left;
+    width: 47%; 
+}
+
+.div_banner_noticia{
+    width: 96%;
+    float: left;
+}
+
+
+.banners{
+    margin-right: 1%;
+    float: left;
+}
+
+.titulo_dicas{
+    padding: 2%;
+}
+
+.btn-light{
+    background-color: #0f825b;
+    border: none;
+    color :white;
+}
+
+.btn btn-light:hover  {
+    background-color: white;
+    color: black;
+}
+
+.btn-light:active{
+    background-color: white;
+    color: black;  
+}
+
+.dropdown-item:hover{
+    background-color: #0f825b;  
+}
+
+.titulos_center{
+    text-align: center;
+}
+
+.card-img-left{
+    /*height:75px;*/
+    width: 100px;
+}
+
+.card-img-left{
+    float: left;
+}
+
+.card-body-text{
+    padding-top: 0;
+    margin-left: 3%;
+    /*height: 75px;*/    
+}
+
+.sem-fundo{
+    background: none;
+}
+
+.padding_curto{
+    padding: 1%;
+}
+
+.texto_preto_slide{
+    color: black;
+    font-weight: bolder;
+    /*font-size: 20px;*/    
+}
+
+.l{
+    text-decoration:none;
+    color:black; 
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

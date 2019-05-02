@@ -1,0 +1,213 @@
+﻿@using Rosnando_semG.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129114037-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129114037-1');
+    </script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosnando</title>
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="~/Content/Site.css" rel="stylesheet"/>
+    <link href="~/Content/visual.css" rel="stylesheet"/>
+
+    @*<script src="~/Scripts/ajax.js"></script>*@
+
+
+</head>
+<body>
+    <div class="div_geral container-fluid">
+        <div class="div_esqueleto">
+            <div id="div_topo">
+
+                <a href="@Url.Action("Index","Home")" style="text-decoration: none">
+                    <img id="logo" src="~/IMG/logo.png" title="Rosnando">
+
+                </a><!-- DIV logo -->
+                <a href="@Url.Action("Index","Home")" style="text-decoration: none; margin:0px">
+                    <h3 id="titulo" style="margin:0px" class="l">ROSNANDO</h3>
+                </a><!-- DIV logo -->
+                <div class="col-lg-7">
+                </div>
+                @*<div id="div_pesquisa">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-1" type="search" placeholder="O que procura?" aria-label="Search">
+                            <button class="btn btn-light my-1 my-sm-0" type="submit">Buscar</button>
+                        </form>
+                    </div>*@
+                <div id="div_logar" style="">
+                    <div class="dropdown">
+                        @using (Html.BeginForm("Login", "Login"))
+                        {
+                            @Html.AntiForgeryToken()
+                            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                            {
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Logar/Cadastrar
+                                </button>
+                                <div class="dropdown-menu">
+                                    <form class="px-4 py-3" method="post">
+                                        <div class="form-group">
+                                            <label for="exampleDropdownFormEmail1">Endereço de email</label>
+                                            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com" name="usuario_email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleDropdownFormPassword1">Senha</label>
+                                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password" name="usuario_senha">
+                                        </div>
+                                        @*<div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                                                <label class="form-check-label" for="dropdownCheck">
+                                                    Lembrar de mim
+                                                </label>
+                                            </div>*@
+                                        <button type="submit" class="btn btn-primary">Logar</button>
+                                    </form>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="@Url.Action("Registro", "Login")">Novo por aqui? Cadastre-se</a>
+                                    @*<a class="dropdown-item" href="#">Esqueceu sua senha?</a>*@
+                                </div>
+                            }
+                            else
+                            {
+
+                                DB_A41AF6_rosnandoEntities db = new DB_A41AF6_rosnandoEntities();
+                                int a = Convert.ToInt32(HttpContext.Current.User.Identity.Name);
+                                string nome = db.Usuario.FirstOrDefault(x => x.usuario_id == a).usuario_nome;
+                                string pontos = Convert.ToString(db.Usuario.FirstOrDefault(x => x.usuario_id == a).usuario_pontos);
+                                <a href="@Url.Action("usuario", "Usuario",new { usuario_id=a})" class="btn btn-light bg-light text-dark"> Olá @nome; @pontos pontos </a>
+
+                                <a class="btn btn-danger" href="@Url.Action("Logoff", "Login")">Sair</a>
+
+
+                            }
+
+                        }
+
+                    </div>
+                </div><!-- DIV logar -->
+            </div><!-- DIV topo -->
+
+        </div><!-- DIV esqueleto -->
+    </div>
+    <div id="div_menu" class="position-static" style="margin-bottom:0px">
+        <div class="div_esqueleto container">
+            <div class="nav">
+                <a href="@Url.Action("Index","Home")" class="btn btn-light">
+                    <i class="fa fa-home"></i>
+                    Início
+                </a>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-lightbulb-o"></i>
+                        Dicas
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 1, b = 1})">Gato</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 1, b = 3})">Cachorro</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 1, b = 4})">Outros</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 1, b = 0})">Todas</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-heartbeat"></i>
+                        SOS
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 2, b = 1})">Gato</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 2, b = 3})">Cachorro</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 2, b = 4})">Outros</a>
+                        <a class="dropdown-item" href="@Url.Action("Index", "Publico", new { a = 2, b = 0})">Todas</a>
+
+                    </div>
+                    @*<a class="dropdown-item" href="#">Engasgo</a>
+                        <a class="dropdown-item" href="#">Ferimentos</a>
+                        <a class="dropdown-item" href="#">Fraturas</a>
+                        <a class="dropdown-item" href="#">Queimaduras</a>
+                        <a class="dropdown-item" href="#">Envenenamento</a>
+                        <a class="dropdown-item" href="#">Outros</a>*@
+                </div>
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("List","Animal", new {usuario_id= Convert.ToInt32(User.Identity.Name) })" class="btn btn-light">
+                        <i class="fa fa-paw"></i>
+                        Meus Animais
+                    </a>
+                    <a href="@Url.Action("Map","Maps")" class="btn btn-light">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Encontrar Clinicas
+                    </a>
+                }
+
+                @if (HttpContext.Current.User.IsInRole("Administrador") || HttpContext.Current.User.IsInRole("Sub_adm"))
+                {
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            ADM
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="@Url.Action("List", "Dicas")">Dicas</a>
+                            <a class="dropdown-item" href="@Url.Action("List", "SOS")">SOS</a>
+                            <a class="dropdown-item" href="@Url.Action("List", "Usuario")">Usuario</a>
+
+                        </div>
+
+                    </div>
+                }
+
+                @*<button class="btn btn-secondary" type="button" id="bt_adocao" aria-haspopup="true" aria-expanded="false">
+                        <img class="menus" src="IMG/menu_adocao.png" title="Adoção">
+                        Adoção
+                    </button>
+                    <button class="btn btn-secondary" type="button" id="bt_petshop" aria-haspopup="true" aria-expanded="false">
+                        <img class="menus" src="IMG/menu_petshop.png" title="PetShop">
+                        PetShop
+                    </button>
+                    <button class="btn btn-secondary" type="button" id="bt_clinicas" aria-haspopup="true" aria-expanded="false">
+                        <img class="menus" src="IMG/menu_clinicas.png" title="Clinicas">
+                        Clinicas Proximas
+                    </button>*@
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div @*class="container body-content"*@ style="margin-bottom:0.1%">
+        @RenderBody()
+
+        @*<footer class="div_esqueleto">
+                <hr />
+                <p id="rodape">&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+            </footer>*@
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    @* @Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d296433a83f484f9109150c36934d2e" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.Acesso" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.Animais" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.Dica" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.RacaAnimal" Width="1.5" PointX="10.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.StstusAnimal" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.TipoAnimal" Width="1.5" PointX="5.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.TipoDica" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41AF6_rosnandoModel.Usuario" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Usuario_Acesso" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Animais_RacaAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Animais_StstusAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Animais_TipoAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Animais_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Dica_TipoAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Dica_TipoDica" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Dica_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_RacaAnimal_TipoAnimal" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_RacaAnimal_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_TipoAnimal_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Tipo_dica_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41AF6_rosnandoModel.FK_Usuario_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

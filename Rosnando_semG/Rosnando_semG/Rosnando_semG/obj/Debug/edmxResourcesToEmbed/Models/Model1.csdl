@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A41AF6_rosnandoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Acesso">
+    <Key>
+      <PropertyRef Name="acesso_id" />
+    </Key>
+    <Property Name="acesso_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="acesso_desricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Acesso" FromRole="Acesso" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Animais">
+    <Key>
+      <PropertyRef Name="animal_id" />
+    </Key>
+    <Property Name="animal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="animal_nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="animal_raca_id" Type="Int32" />
+    <Property Name="usuario_id" Type="Int32" Nullable="false" />
+    <Property Name="status_animal_id" Type="Int32" Nullable="false" />
+    <Property Name="tipo_animal_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RacaAnimal" Relationship="Self.FK_Animais_RacaAnimal" FromRole="Animais" ToRole="RacaAnimal" />
+    <NavigationProperty Name="StstusAnimal" Relationship="Self.FK_Animais_StstusAnimal" FromRole="Animais" ToRole="StstusAnimal" />
+    <NavigationProperty Name="TipoAnimal" Relationship="Self.FK_Animais_TipoAnimal" FromRole="Animais" ToRole="TipoAnimal" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Animais_Usuario" FromRole="Animais" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Dica">
+    <Key>
+      <PropertyRef Name="dica_id" />
+    </Key>
+    <Property Name="dica_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dica_titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dica_descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario_id" Type="Int32" Nullable="false" />
+    <Property Name="tipo_dica_id" Type="Int32" Nullable="false" />
+    <Property Name="tipo_animal_id" Type="Int32" Nullable="false" />
+    <Property Name="dica_status" Type="Boolean" Nullable="false" />
+    <Property Name="dica_data" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dica_texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dica_img" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TipoAnimal" Relationship="Self.FK_Dica_TipoAnimal" FromRole="Dica" ToRole="TipoAnimal" />
+    <NavigationProperty Name="TipoDica" Relationship="Self.FK_Dica_TipoDica" FromRole="Dica" ToRole="TipoDica" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Dica_Usuario1" FromRole="Dica" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="RacaAnimal">
+    <Key>
+      <PropertyRef Name="raca_animal_id" />
+    </Key>
+    <Property Name="raca_animal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="raca_animal_descricao" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="usuario_id" Type="Int32" Nullable="false" />
+    <Property Name="tipo_animal_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Animais" Relationship="Self.FK_Animais_RacaAnimal" FromRole="RacaAnimal" ToRole="Animais" />
+    <NavigationProperty Name="TipoAnimal" Relationship="Self.FK_RacaAnimal_TipoAnimal" FromRole="RacaAnimal" ToRole="TipoAnimal" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_RacaAnimal_Usuario" FromRole="RacaAnimal" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="StstusAnimal">
+    <Key>
+      <PropertyRef Name="status_animal_id" />
+    </Key>
+    <Property Name="status_animal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status_animal_descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Animais" Relationship="Self.FK_Animais_StstusAnimal" FromRole="StstusAnimal" ToRole="Animais" />
+  </EntityType>
+  <EntityType Name="TipoAnimal">
+    <Key>
+      <PropertyRef Name="tipo_animal_id" />
+    </Key>
+    <Property Name="tipo_animal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_animal_descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Animais" Relationship="Self.FK_Animais_TipoAnimal" FromRole="TipoAnimal" ToRole="Animais" />
+    <NavigationProperty Name="Dica" Relationship="Self.FK_Dica_TipoAnimal" FromRole="TipoAnimal" ToRole="Dica" />
+    <NavigationProperty Name="RacaAnimal" Relationship="Self.FK_RacaAnimal_TipoAnimal" FromRole="TipoAnimal" ToRole="RacaAnimal" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_TipoAnimal_Usuario" FromRole="TipoAnimal" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="TipoDica">
+    <Key>
+      <PropertyRef Name="tipo_dica_id" />
+    </Key>
+    <Property Name="tipo_dica_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario_id" Type="Int32" Nullable="false" />
+    <Property Name="primeiro_socorros" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Dica" Relationship="Self.FK_Dica_TipoDica" FromRole="TipoDica" ToRole="Dica" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Tipo_dica_Usuario" FromRole="TipoDica" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="usuario_id" />
+    </Key>
+    <Property Name="usuario_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuario_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario_nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario_sobrenome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario_senha" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acesso_id" Type="Int32" />
+    <Property Name="usuario_dataNasc" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="usuario_acesso" Type="Int32" />
+    <Property Name="usuario_pontos" Type="Int32" />
+    <NavigationProperty Name="Acesso" Relationship="Self.FK_Usuario_Acesso" FromRole="Usuario" ToRole="Acesso" />
+    <NavigationProperty Name="Animais" Relationship="Self.FK_Animais_Usuario" FromRole="Usuario" ToRole="Animais" />
+    <NavigationProperty Name="Dica" Relationship="Self.FK_Dica_Usuario1" FromRole="Usuario" ToRole="Dica" />
+    <NavigationProperty Name="RacaAnimal" Relationship="Self.FK_RacaAnimal_Usuario" FromRole="Usuario" ToRole="RacaAnimal" />
+    <NavigationProperty Name="TipoAnimal" Relationship="Self.FK_TipoAnimal_Usuario" FromRole="Usuario" ToRole="TipoAnimal" />
+    <NavigationProperty Name="TipoDica" Relationship="Self.FK_Tipo_dica_Usuario" FromRole="Usuario" ToRole="TipoDica" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Usuario_Usuario" FromRole="Usuario" ToRole="Usuario1" />
+    <NavigationProperty Name="Usuario2" Relationship="Self.FK_Usuario_Usuario" FromRole="Usuario1" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_Usuario_Acesso">
+    <End Role="Acesso" Type="Self.Acesso" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Acesso">
+        <PropertyRef Name="acesso_id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="acesso_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animais_RacaAnimal">
+    <End Role="RacaAnimal" Type="Self.RacaAnimal" Multiplicity="0..1" />
+    <End Role="Animais" Type="Self.Animais" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RacaAnimal">
+        <PropertyRef Name="raca_animal_id" />
+      </Principal>
+      <Dependent Role="Animais">
+        <PropertyRef Name="animal_raca_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animais_StstusAnimal">
+    <End Role="StstusAnimal" Type="Self.StstusAnimal" Multiplicity="1" />
+    <End Role="Animais" Type="Self.Animais" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StstusAnimal">
+        <PropertyRef Name="status_animal_id" />
+      </Principal>
+      <Dependent Role="Animais">
+        <PropertyRef Name="status_animal_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animais_TipoAnimal">
+    <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
+    <End Role="Animais" Type="Self.Animais" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAnimal">
+        <PropertyRef Name="tipo_animal_id" />
+      </Principal>
+      <Dependent Role="Animais">
+        <PropertyRef Name="tipo_animal_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Animais_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Animais" Type="Self.Animais" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="usuario_id" />
+      </Principal>
+      <Dependent Role="Animais">
+        <PropertyRef Name="usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dica_TipoAnimal">
+    <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
+    <End Role="Dica" Type="Self.Dica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAnimal">
+        <PropertyRef Name="tipo_animal_id" />
+      </Principal>
+      <Dependent Role="Dica">
+        <PropertyRef Name="tipo_animal_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dica_TipoDica">
+    <End Role="TipoDica" Type="Self.TipoDica" Multiplicity="1" />
+    <End Role="Dica" Type="Self.Dica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDica">
+        <PropertyRef Name="tipo_dica_id" />
+      </Principal>
+      <Dependent Role="Dica">
+        <PropertyRef Name="tipo_dica_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dica_Usuario1">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Dica" Type="Self.Dica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="usuario_id" />
+      </Principal>
+      <Dependent Role="Dica">
+        <PropertyRef Name="usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RacaAnimal_TipoAnimal">
+    <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="1" />
+    <End Role="RacaAnimal" Type="Self.RacaAnimal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAnimal">
+        <PropertyRef Name="tipo_animal_id" />
+      </Principal>
+      <Dependent Role="RacaAnimal">
+        <PropertyRef Name="tipo_animal_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RacaAnimal_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="RacaAnimal" Type="Self.RacaAnimal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="usuario_id" />
+      </Principal>
+      <Dependent Role="RacaAnimal">
+        <PropertyRef Name="usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TipoAnimal_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="TipoAnimal" Type="Self.TipoAnimal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="usuario_id" />
+      </Principal>
+      <Dependent Role="TipoAnimal">
+        <PropertyRef Name="usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipo_dica_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="TipoDica" Type="Self.TipoDica" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="usuario_id" />
+      </Principal>
+      <Dependent Role="TipoDica">
+        <PropertyRef Name="usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="usuario_id" />
+      </Principal>
+      <Dependent Role="Usuario1">
+        <PropertyRef Name="usuario_acesso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_A41AF6_rosnandoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Acesso" EntityType="Self.Acesso" />
+    <EntitySet Name="Animais" EntityType="Self.Animais" />
+    <EntitySet Name="Dica" EntityType="Self.Dica" />
+    <EntitySet Name="RacaAnimal" EntityType="Self.RacaAnimal" />
+    <EntitySet Name="StstusAnimal" EntityType="Self.StstusAnimal" />
+    <EntitySet Name="TipoAnimal" EntityType="Self.TipoAnimal" />
+    <EntitySet Name="TipoDica" EntityType="Self.TipoDica" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Usuario_Acesso" Association="Self.FK_Usuario_Acesso">
+      <End Role="Acesso" EntitySet="Acesso" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animais_RacaAnimal" Association="Self.FK_Animais_RacaAnimal">
+      <End Role="RacaAnimal" EntitySet="RacaAnimal" />
+      <End Role="Animais" EntitySet="Animais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animais_StstusAnimal" Association="Self.FK_Animais_StstusAnimal">
+      <End Role="StstusAnimal" EntitySet="StstusAnimal" />
+      <End Role="Animais" EntitySet="Animais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animais_TipoAnimal" Association="Self.FK_Animais_TipoAnimal">
+      <End Role="TipoAnimal" EntitySet="TipoAnimal" />
+      <End Role="Animais" EntitySet="Animais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Animais_Usuario" Association="Self.FK_Animais_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Animais" EntitySet="Animais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dica_TipoAnimal" Association="Self.FK_Dica_TipoAnimal">
+      <End Role="TipoAnimal" EntitySet="TipoAnimal" />
+      <End Role="Dica" EntitySet="Dica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dica_TipoDica" Association="Self.FK_Dica_TipoDica">
+      <End Role="TipoDica" EntitySet="TipoDica" />
+      <End Role="Dica" EntitySet="Dica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dica_Usuario1" Association="Self.FK_Dica_Usuario1">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Dica" EntitySet="Dica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RacaAnimal_TipoAnimal" Association="Self.FK_RacaAnimal_TipoAnimal">
+      <End Role="TipoAnimal" EntitySet="TipoAnimal" />
+      <End Role="RacaAnimal" EntitySet="RacaAnimal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RacaAnimal_Usuario" Association="Self.FK_RacaAnimal_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="RacaAnimal" EntitySet="RacaAnimal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TipoAnimal_Usuario" Association="Self.FK_TipoAnimal_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="TipoAnimal" EntitySet="TipoAnimal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipo_dica_Usuario" Association="Self.FK_Tipo_dica_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="TipoDica" EntitySet="TipoDica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Usuario" Association="Self.FK_Usuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Usuario1" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

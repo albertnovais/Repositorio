@@ -1,0 +1,100 @@
+﻿@model Rosnando_semG.Models.Dica
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Titulo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dica_titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Descrição")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dica_descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Status")
+        </dt>
+        <dd>
+            @if (Model.dica_status == false)
+            {
+
+                @Html.DisplayName("Ativa")
+
+            }
+            else
+            {
+
+                @Html.DisplayName("Apagada")
+
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dica_data)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Texto SOS")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dica_texto)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("imagem")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dica_img)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Animal")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoAnimal.tipo_animal_descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tipo SOS")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDica.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Usuario")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.usuario_email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.dica_id }) |
+    @Html.ActionLink("Voltar", "List")
+</p>

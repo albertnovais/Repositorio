@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Rosnando_semG.Models.Usuario>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<div class="modal fade" id="modal_List">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Delete?</h4>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center" id="modal_content_List"></h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+
+                <form action="@Url.Action("Delete")" method="post">
+                    <input id="input_id_delete_List" type="hidden" name="id" value="" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">List</h3>
+            </div>
+            <div class="box-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.usuario_email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.usuario_nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.usuario_sobrenome)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.usuario_dataNasc)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.usuario_pontos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Acesso.acesso_desricao)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Deu Acesso")
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.usuario_email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.usuario_nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.usuario_sobrenome)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.usuario_dataNasc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.usuario_pontos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Acesso.acesso_desricao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Usuario2.usuario_nome)
+                                @Html.DisplayFor(modelItem => item.Usuario2.usuario_sobrenome)
+                            </td>
+
+                            <td>
+                                <div class="btn-group pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">
+                                        <i class="fa fa-folder-open"></i>
+                                    </a>
+                                    <a href="@Url.Action("EditADM", new { usuario_id=item.usuario_id })" class="btn btn-default btn-flat">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    @*<button onclick="OpenDeleteModal(@(item.usuario_id), '@("content")')" type="button" class="btn btn-danger btn-flat">
+                                        <i class="fa fa-trash"></i>
+                                    </button>*@
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>s
+    </div>
+</div>
+
+<script>
+    function OpenDeleteModal(requestId, text) {
+        $('#modal_content_List').html(text);
+        $('#modal_List').modal('show');
+        $('#input_id_delete_List').val(requestId);
+    }
+</script>
+

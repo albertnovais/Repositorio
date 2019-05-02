@@ -1,0 +1,64 @@
+﻿@model Rosnando_semG.Models.Usuario
+
+@{
+    ViewBag.Title = "EditSenha";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string nome = ViewBag.nome;
+}
+
+
+<div class="div_esqueleto" style="margin-top:2%">
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                Olá, @nome
+                <div class="card" style="width: 18rem; border-left: none; border-right: none; margin-top: 10%;">
+
+                    <div class="list-group list-group-flush">
+
+                        <a class="list-group-item btn-light" href="@Url.Action("usuario", "Usuario",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Dados Pessoais </a>
+                        <a class="list-group-item btn-light" href="@Url.Action("list", "Animal",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Meus Animais </a>
+                        <a class="list-group-item text-dark" href="@Url.Action("editSenha", "Usuario",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Trocar Senha </a>
+                        <a class="list-group-item btn-light" href="@Url.Action("Logoff", "Login")"> Sair </a>
+
+                    </div>
+                        
+                </div>
+            </div>
+          
+            <div class="col">
+                Alterar Senha
+                
+                <div class="form-group" style="margin-top: 5%;">
+                    <form method="post">
+                        <label for="userEmail" style="font-weight:bold;">Senha Atual</label>
+                        <div class="col-md-10">
+                            <input type="password", name="usuario_senha", class="form-control">
+                            @Html.ValidationMessage("usuario_senha", "", new { @class = "text-danger" })
+                        </div>
+
+                        <label for="us  erEmail" style="font-weight:bold;">Nova Senha</label>
+                        <div class="col-md-10">
+
+                            <input type="password" , name="NovaSenha" , class="form-control">
+                            @Html.ValidationMessage("NovaSenha", "", new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn btn-light">Salvar</button>
+                    </form>
+
+
+                </div>
+            </div>
+
+</div>
+<div class="col">
+
+</div>
+</div>
+</div>
+
+
+
+    </div>
+    </div>

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Rosnando_semG.Models.Dica>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dicas</h2>
+
+<a class="btn btn-light" href="@Url.Action("Create")">
+    <i class="fa fa-plus"></i>
+    Nova Dica
+
+</a>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Titulo")
+        </th>
+        <th>
+            @Html.DisplayName("Descrição")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("Data")
+        </th>
+        
+        <th>
+            @Html.DisplayName("Animal")
+        </th>
+        <th>
+            @Html.DisplayName("Dica")
+        </th>
+        <th>
+            @Html.DisplayName("Usuario")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dica_titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dica_descricao)
+        </td>
+
+        @if (item.dica_status == false)
+        {
+            <td>
+                @Html.DisplayName("Apagada")
+            </td>
+        }
+        else
+        {
+            <td>
+                @Html.DisplayName("Ativa")
+            </td>
+        }
+
+        <td>
+            @Html.DisplayFor(modelItem => item.dica_data)
+        </td>
+       
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoAnimal.tipo_animal_descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDica.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.usuario_nome)
+        </td>
+        <td>
+            
+                <a href="@Url.Action("Details","Dicas", new { dica_id = item.dica_id})" class="btn btn-light text-light" title="detalhes">
+                    <i class="fa fa-eye"></i>
+                </a>
+                @if (HttpContext.Current.User.IsInRole("Administrador"))
+                {
+                    <a href="@Url.Action("Edit","Dicas", new { dica_id = item.dica_id})" class="btn btn-light text-light" title="editar">
+                        <i class="fa fa-edit"></i>
+                    </a>}
+          
+        </td>
+    </tr>
+}
+
+</table>

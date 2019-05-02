@@ -1,0 +1,203 @@
+﻿@model Rosnando_semG.Models.Dica
+
+@{
+    ViewBag.Title = "Dica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var dicas = ViewBag.dicas;
+    var pontos = ViewBag.topp;
+    var dono = ViewBag.topd;
+    var ani = ViewBag.topa;
+    int i = 0;
+}
+
+@*<h2>Dica</h2>
+
+    <div>
+        <h4>@Html.DisplayFor(model => model.dica_titulo)</h4>
+        <h5>@Html.DisplayFor(model => model.dica_descricao)</h5>
+        <img style="height: 150px; width: 250px;" src="@Html.DisplayFor(model => model.dica_img)" />
+        <p>
+            @Html.DisplayFor(model => model.dica_texto)
+        </p>
+
+        <p>
+            @Html.DisplayFor(model => model.dica_data)
+        </p>
+
+
+
+        <p>
+            @Html.DisplayFor(model => model.TipoAnimal.tipo_animal_descricao)
+        </p>
+
+
+        <p>
+            @Html.DisplayFor(model => model.TipoDica.descricao)
+        </p>
+
+    </div>*@
+<div id="div_corpo">
+    <div class="div_esqueleto">
+        <div class="noticias">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">@Html.DisplayFor(model => model.dica_titulo)</h1>
+                    <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.TipoDica.descricao) @Html.DisplayFor(model => model.TipoAnimal.tipo_animal_descricao)</small></p>
+                    <p class="card-text"><small class="text-muted">@Html.DisplayFor(model => model.dica_data)</small></p>
+                </div>
+                <img class="card-img-bottom" src="@Html.DisplayFor(model => model.dica_img)" alt="Card image cap" style="max-height: 350px; width: 60%; align-self: center">
+                <div class="card-body">
+                    <p class="card-text">
+                        @Html.DisplayFor(model => model.dica_texto)
+                    </p>
+                </div>
+                <p>
+                    @if (HttpContext.Current.User.IsInRole("Administrador") || HttpContext.Current.User.IsInRole("Sub_adm"))
+                    {
+                        if (Model.TipoDica.primeiro_socorros == false)
+                        {
+                            <a href="@Url.Action("Edit","Dicas", new { dica_id = Model.dica_id})" class="btn btn-light"> Editar</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Edit","SOS", new { dica_id = Model.dica_id})" class="btn btn-danger">Editar</a>
+                        }
+
+
+                    }
+                    @if (Model.TipoDica.primeiro_socorros == false)
+                    {
+                        <a class="btn btn-light" href="@Url.Action("Index", "Publico", new { a = 1, b = 0})">Voltar</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger" href="@Url.Action("Index", "Publico", new { a = 2, b = 0})">Voltar</a>
+                    }
+
+                </p>
+
+            </div>
+        </div>
+        <div id="destaques">
+
+            <div class="card bg-light mb-3" style="max-width: 100%;">
+
+                <div class="card-header"> <h4 id="titulo_destaques"> Destaques da Semana </h4></div>
+                @foreach (var item in dicas)
+                {
+                    <a href="@Url.Action("Dica", "Publico", new { item.dica_id })" class="card-body" style="padding: 0px; margin: 20px; margin-bottom: 10px;">
+                        <div class="card-img-left" style="width: 100%;">
+                            <img class="card-img-left" style="height:57px;" src="@item.dica_img">
+                            <div class="card" style="height:57px;">
+                                <div class="card-body-text l">
+                                    @if (item.TipoDica.primeiro_socorros == false)
+                                    {
+                                        <strong class="d-inline-block mb-2 text-success">@item.TipoDica.descricao</strong>
+                                    }
+                                    else
+                                    {
+                                        <strong class="d-inline-block mb-2 text-danger ">@item.TipoDica.descricao</strong>
+                                    }
+                                    @item.dica_titulo
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+            @*</div>*@
+            @*<div id="destaques">*@
+
+            <div class="card bg-light mb-3" style="max-width: 100%;">
+
+                <div class="card-header"> <h4 id="titulo_destaques"> Top Pontos </h4></div>
+                @foreach (var item in pontos)
+                {
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                @(i += 1)
+                                º
+                            </div>
+                            <div class="col-sm-6">
+                                @item.usuario_nome
+                                @item.usuario_sobrenome
+                            </div>
+                            <div class="col-sm-3">
+                                @item.usuario_pontos
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                }
+
+                @*</div>*@
+
+                <p style="display:none">@(i = 0)</p>
+
+
+            </div>
+
+            @*<div id="destaques">*@
+
+            <div class="card bg-light mb-3" style="max-width: 100%;">
+
+                <div class="card-header"> <h4 id="titulo_destaques"> Top Donos </h4></div>
+                @foreach (var item in dono)
+                {
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                @(i += 1)
+                                º
+                            </div>
+                            <div class="col-sm-6">
+                                @item.usuario_nome
+                                @item.usuario_sobrenome
+                            </div>
+                            <div class="col-sm-3">
+                                @item.Animais.Count
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                }
+
+            </div>
+            <p style="display:none">@(i = 0)</p>
+            <div class="card bg-light mb-3" style="max-width: 100%;">
+
+                <div class="card-header"> <h4 id="titulo_destaques"> Top Animais </h4></div>
+                @foreach (var item in ani)
+                {
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                @(i += 1)
+                                º
+                            </div>
+                            <div class="col-sm-6">
+                                @item.tipo_animal_descricao
+                            </div>
+                            <div class="col-sm-3">
+                                @item.Animais.Count
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model Rosnando_semG.Models.Usuario
+
+@{
+    ViewBag.Title = "usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var nome = ViewBag.nome;
+}
+
+
+<div class="div_esqueleto" style="margin-top: 2%">
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                Olá, @nome
+                <div class="card" style="width: 18rem; border-left: none; border-right: none; margin-top: 5%;">
+
+                    <div class="list-group list-group-flush">
+                     
+                        <a class="list-group-item text-dark" href="@Url.Action("usuario", "Usuario",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Dados Pessoais </a>
+                        <a class="list-group-item btn-light" href="@Url.Action("list", "Animal",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Meus Animais </a>
+                        <a class="list-group-item btn-light" href="@Url.Action("editSenha", "Usuario",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Trocar Senha </a>
+                        <a class="list-group-item btn-light" href="@Url.Action("Logoff", "Login")"> Sair </a>
+                        
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="" style="background: #0f825b; color: white; font-weight: bold; text-align: center;">
+                    Dados Pessoais
+                </div>
+                <div class="form-group" style="margin-top: 5%;">
+                    <label for="userEmail" style="font-weight:bold;">E-mail</label>
+                    <div>@Html.DisplayFor(model => model.usuario_email)</div>
+                </div>
+                <div class="form-group" style="margin-top: 5%;">
+                    <label for="userEmail" style="font-weight:bold;">Nome</label>
+                    <div>@Html.DisplayFor(model => model.usuario_nome) @Html.DisplayFor(model => model.usuario_sobrenome)</div>
+                </div>
+                <div class="form-group" style="margin-top: 5%;">
+                    <label for="userEmail" style="font-weight:bold;">Data de Nascimento</label>
+                    <div>@Html.DisplayFor(model => model.usuario_dataNasc)</div>
+                </div>
+                <div class="form-group" style="margin-top: 5%;">
+                    <label for="userEmail" style="font-weight:bold;">Pontos Rosnando</label>
+                    <div>@Html.DisplayFor(model => model.usuario_pontos)</div>
+                </div>
+                <div>
+                    <a class="btn btn-light" href="@Url.Action("Edit", "Usuario", new { usuario_id = Model.usuario_id})"> Editar</a>
+                </div>
+            </div>
+
+            <div class="col">
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.usuario_id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

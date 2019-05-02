@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_A41AF6_rosnandoModelStoreContainer" CdmEntityContainer="DB_A41AF6_rosnandoEntities">
+    <EntitySetMapping Name="Acesso">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.Acesso">
+        <MappingFragment StoreEntitySet="Acesso">
+          <ScalarProperty Name="acesso_id" ColumnName="acesso_id" />
+          <ScalarProperty Name="acesso_desricao" ColumnName="acesso_desricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Animais">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.Animais">
+        <MappingFragment StoreEntitySet="Animais">
+          <ScalarProperty Name="animal_id" ColumnName="animal_id" />
+          <ScalarProperty Name="animal_nome" ColumnName="animal_nome" />
+          <ScalarProperty Name="animal_raca_id" ColumnName="animal_raca_id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="status_animal_id" ColumnName="status_animal_id" />
+          <ScalarProperty Name="tipo_animal_id" ColumnName="tipo_animal_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dica">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.Dica">
+        <MappingFragment StoreEntitySet="Dica">
+          <ScalarProperty Name="dica_id" ColumnName="dica_id" />
+          <ScalarProperty Name="dica_titulo" ColumnName="dica_titulo" />
+          <ScalarProperty Name="dica_descricao" ColumnName="dica_descricao" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="tipo_dica_id" ColumnName="tipo_dica_id" />
+          <ScalarProperty Name="tipo_animal_id" ColumnName="tipo_animal_id" />
+          <ScalarProperty Name="dica_status" ColumnName="dica_status" />
+          <ScalarProperty Name="dica_data" ColumnName="dica_data" />
+          <ScalarProperty Name="dica_texto" ColumnName="dica_texto" />
+          <ScalarProperty Name="dica_img" ColumnName="dica_img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RacaAnimal">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.RacaAnimal">
+        <MappingFragment StoreEntitySet="RacaAnimal">
+          <ScalarProperty Name="raca_animal_id" ColumnName="raca_animal_id" />
+          <ScalarProperty Name="raca_animal_descricao" ColumnName="raca_animal_descricao" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="tipo_animal_id" ColumnName="tipo_animal_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StstusAnimal">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.StstusAnimal">
+        <MappingFragment StoreEntitySet="StstusAnimal">
+          <ScalarProperty Name="status_animal_id" ColumnName="status_animal_id" />
+          <ScalarProperty Name="status_animal_descricao" ColumnName="status_animal_descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoAnimal">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.TipoAnimal">
+        <MappingFragment StoreEntitySet="TipoAnimal">
+          <ScalarProperty Name="tipo_animal_id" ColumnName="tipo_animal_id" />
+          <ScalarProperty Name="tipo_animal_descricao" ColumnName="tipo_animal_descricao" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDica">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.TipoDica">
+        <MappingFragment StoreEntitySet="TipoDica">
+          <ScalarProperty Name="tipo_dica_id" ColumnName="tipo_dica_id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="primeiro_socorros" ColumnName="primeiro_socorros" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="DB_A41AF6_rosnandoModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="usuario_email" ColumnName="usuario_email" />
+          <ScalarProperty Name="usuario_nome" ColumnName="usuario_nome" />
+          <ScalarProperty Name="usuario_sobrenome" ColumnName="usuario_sobrenome" />
+          <ScalarProperty Name="usuario_senha" ColumnName="usuario_senha" />
+          <ScalarProperty Name="acesso_id" ColumnName="acesso_id" />
+          <ScalarProperty Name="usuario_dataNasc" ColumnName="usuario_dataNasc" />
+          <ScalarProperty Name="usuario_acesso" ColumnName="usuario_acesso" />
+          <ScalarProperty Name="usuario_pontos" ColumnName="usuario_pontos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

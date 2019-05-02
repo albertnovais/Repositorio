@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Rosnando_semG.Models.Animais>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var dicas = ViewBag.dicas;
+    //var pontos = ViewBag.topp;
+    //var dono = ViewBag.topd;
+    //var ani = ViewBag.topa;
+    //int i = 0;
+    //string nome = ViewBag.nome;
+}
+
+<div id="div_corpo">
+
+    <div class="div_esqueleto" style="margin-top:2%">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    Olá, @ViewBag.nome
+                    <div class="card" style="width: 18rem; border-left: none; border-right: none; margin-top: 10%;">
+
+                        <div class="list-group list-group-flush">
+
+                            <a class="list-group-item btn-light" href="@Url.Action("usuario", "Usuario",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Dados Pessoais </a>
+                            <a class="list-group-item text-dark" href="@Url.Action("list", "Animal",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Meus Animais </a>
+                            <a class="list-group-item btn-light" href="@Url.Action("editSenha", "Usuario",new { usuario_id=Convert.ToInt32(HttpContext.Current.User.Identity.Name)})"> Trocar Senha </a>
+                            <a class="list-group-item btn-light" href="@Url.Action("Logoff", "Login")"> Sair </a>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div style="background: #0f825b; color: white; font-weight: bold; text-align: center;">
+                        <span class="align-middle">Meus animais</span>
+                        <a class="btn btn-light" href="@Url.Action("Create")">
+                            <i class="fa fa-plus"></i>
+                            Novo Animal
+                        </a>
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                    <div class="form-group" style="margin-top: 5%;">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-body" style="background: #0f825b; color: white; font-weight: bold; text-align: center;">
+                                <h4 class="card-title">
+                                    @Html.DisplayFor(modelItem => item.animal_nome)
+                                    @if (item.tipo_animal_id == 1)
+                                    {
+                                        <i class='fas fa-cat'></i>
+                                    }
+                                    else if (item.tipo_animal_id == 3)
+                                    {
+                                        <i class='fas fa-dog'></i>
+                                    }
+                                </h4>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span style="font-weight: bold;">Tipo:</span> @Html.DisplayFor(modelItem => item.TipoAnimal.tipo_animal_descricao)</li>
+                                <li class="list-group-item">
+                                    <span style="font-weight: bold;">Raça:</span>
+                                    @if (item.animal_raca_id == null)
+                                    {
+                                        <a class="btn btn-light" href="@Url.Action("Raca", new { item.tipo_animal_id, item.animal_id})">
+                                            <i class="fa fa-plus"></i>
+                                            Adicionar Raça
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        @item.RacaAnimal.raca_animal_descricao;
+                                    }
+
+                                </li>
+                                <li class="list-group-item"><span style="font-weight: bold;"> Status: </span> @item.StstusAnimal.status_animal_descricao</li>
+
+                                @*<li class="list-group-item"><p style="font-weight: bold;">Idade:</p> </li>*@
+                            </ul>
+                            <div class="card-body" style="text-align: center;">
+                                <a class="btn btn-light" href="@Url.Action("Animal","Edit", new { animal_id = item.animal_id} )">Editar</a>
+                                <button type="button" class="btn btn-light">Dar para adoção</button>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+
+                    }
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="col">
+                            <div style="background: #0f825b; color: white; font-weight: bold; text-align: center;">
+                                <span class="align-middle">Meus animais</span>
+                                <a class="btn btn-light" href="@Url.Action("Create")">
+                                    <i class="fa fa-plus"></i>
+                                    Novo Animal
+                                </a>
+                            </div>
+
+                            @foreach (var item in Model)
+                            {
+                                <div class="form-group" style="margin-top: 5%;">
+                                    <div class="card" style="width: 100%;">
+                                         DIV corpo <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                                        <div class="card-body" style="background: #0f825b; color: white; font-weight: bold; text-align: center;">
+                                            <h4 class="card-title">
+                                                @Html.DisplayFor(modelItem => item.animal_nome)
+                                                @if (item.tipo_animal_id == 1)
+                                                {
+                                                    <i class='fas fa-cat'></i>
+                                                }
+                                                else if (item.tipo_animal_id == 3)
+                                                {
+                                                    <i class='fas fa-dog'></i>
+                                                }
+
+                                            </h4>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><span style="font-weight: bold;">Tipo:</span> @Html.DisplayFor(modelItem => item.TipoAnimal.tipo_animal_descricao)</li>
+                                            <li class="list-group-item">
+                                                <span style="font-weight: bold;">Raça:</span>
+                                                @if (item.animal_raca_id == null)
+                                                {
+                                                    <a class="btn btn-light" href="@Html.Action("Raca", new { item.tipo_animal_id, item.animal_id })">
+                                                        <i class="fa fa-plus"></i>
+                                                        Adicionar Raça
+                                                    </a>
+                                                }
+                                                else {
+                                                    @item.RacaAnimal.raca_animal_descricao;
+                                                }
+
+                                            </li>
+                                            @*<li class="list-group-item"><span style="font-weight: bold;"> Status: </span> @item.StstusAnimal.status_animal_descricao</li>
+
+
+                                                <li class="list-group-item"><p style="font-weight: bold;">Idade:</p> </li>
+                                        @*</ul>
+                                        <div class="card-body" style="text-align: center;">
+                                            <a class="btn btn-light" href="@Html.Action("Animal","Edit", new { animal_id = item.animal_id} )" >Editar</a>
+                                            <button type="button" class="btn btn-light">Dar para adoção</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="col">
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+    s*@
